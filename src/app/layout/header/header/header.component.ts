@@ -23,4 +23,5 @@ export class HeaderComponent implements OnInit {
   onItemClick(event) {
     this.itemClick.next(event)
   }
+  
 }

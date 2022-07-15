@@ -34,12 +34,14 @@ export class DummyFormBillingComponent implements OnInit {
       city: ['', [Validators.required]],
       street: ['', [Validators.required]],
       personal: [true, [Validators.required]],
+      image: ['', [Validators.required]],
       condition: ['', [Validators.requiredTrue]],
     }, {updateOn: 'blur'})
   }
 
   submit() {
     this.formGroup.markAllAsTouched()
+    console.log("valiue ==> ",)
   }
 
   reset() {

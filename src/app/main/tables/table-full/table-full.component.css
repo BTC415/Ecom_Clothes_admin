@@ -1,0 +1,15 @@
+/* .ag-header-cell-text {
+  font-size: 0.875rem;
+  color: red;
+} */
+.app-ag-grid {
+    font-size: 15px !important;
+}
+  .ag-pivot-off .ag-header-group-cell {
+    font-size: 50px;
+    color: red;
+}
+.btnstatus{
+  background-color: red;
+  color: white;
+}

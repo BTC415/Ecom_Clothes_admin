@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-layout-mini-sidebar',
@@ -6,6 +7,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core'
   styleUrls: ['./layout-mini-sidebar.component.scss']
 })
 export class LayoutMiniSidebarComponent implements OnInit {
+
+ 
 
   @Output() itemClick: EventEmitter<any> = new EventEmitter()
 
@@ -91,7 +94,7 @@ export class LayoutMiniSidebarComponent implements OnInit {
 
   public loading: boolean = false
 
-  constructor() {
+  constructor(private router : Router) {
   }
 
   ngOnInit(): void {
@@ -106,6 +109,11 @@ export class LayoutMiniSidebarComponent implements OnInit {
     setTimeout(() => {
       this.loading = false
     }, 500)
+  }
+  btnLogout(){
+    console.log("log out")
+    localStorage.removeItem("token")
+    this.router.navigate(['auth/modern/signup'])
   }
 
 }

@@ -15,9 +15,14 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/app/dashboard/default',
+    redirectTo: '/auth/modern/signin',
     pathMatch: 'full',
   },
+  // {
+  //   path: '**',
+  //   redirectTo: '/app/dashboard/default',
+  //   pathMatch: 'full',
+  // },
 ]
 
 @NgModule({

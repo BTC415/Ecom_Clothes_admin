@@ -302,7 +302,7 @@
       <div ngbDropdownMenu>
         <div class="app-list app-list--hover app-list--select app-list--no-border app-list--p">
           <div class="app-list__item app-list__item--no-p" ngbDropdownItem>
-            <div class="px-2">
+            <!-- <div class="px-2">
               <img class="w-10 h-10 rounded-full" src="assets/img/avatar/avatar2.jpg"/>
             </div>
             <div class="app-list__item__content mr-4">
@@ -327,13 +327,13 @@
             <div class="app-list__item__content">
               Settings
             </div>
-          </div>
+          </div> -->
           <div class="app-list__divider"></div>
-          <div class="app-list__item mb-2" ngbDropdownItem routerLink="/auth/modern/signin">
-            <div class="app-list__item__content">
-              Logout
+          <!-- <div class="app-list__item mb-2" ngbDropdownItem routerLink="/auth/modern/signin"> -->
+            <div class="app-list__item__content" style="cursor: pointer;margin-left: 17px;" (click)="btnLogout()">
+            Logout
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </div>

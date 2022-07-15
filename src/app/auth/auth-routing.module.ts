@@ -1,21 +1,21 @@
-import {NgModule} from '@angular/core'
-import {Routes, RouterModule} from '@angular/router'
-import {AuthLoginComponent} from "./auth-login/auth-login.component"
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthLoginComponent } from './auth-login/auth-login.component';
 
 import {
   AppLayoutDividedComponent,
   AppLayoutDividedAltComponent,
   AppLayoutDividedFullComponent,
-  AppLayoutBasicComponent
-} from "@youpez/index"
+  AppLayoutBasicComponent,
+} from '@youpez/index';
 
-import {AuthSignupComponent} from "./auth-signup/auth-signup.component"
-import {AuthForgotPasswordComponent} from "./auth-forgot-password/auth-forgot-password.component"
-import {AuthResetPasswordComponent} from "./auth-reset-password/auth-reset-password.component"
-import {AuthConfirmationComponent} from "./auth-confirmation/auth-confirmation.component"
-import {AuthBookADemoComponent} from "./auth-book-a-demo/auth-book-a-demo.component"
-import {ComingSoonComponent} from "./coming-soon/coming-soon.component"
-
+import { AuthSignupComponent } from './auth-signup/auth-signup.component';
+import { AuthForgotPasswordComponent } from './auth-forgot-password/auth-forgot-password.component';
+import { AuthResetPasswordComponent } from './auth-reset-password/auth-reset-password.component';
+import { AuthConfirmationComponent } from './auth-confirmation/auth-confirmation.component';
+import { AuthBookADemoComponent } from './auth-book-a-demo/auth-book-a-demo.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { AuthGuard } from '../services/auth.guard';
 const routes: Routes = [
   {
     path: 'modern',
@@ -24,37 +24,12 @@ const routes: Routes = [
       {
         path: 'signin',
         component: AuthLoginComponent,
+        // canActivate: [AuthGuard]
       },
-      {
-        path: 'signup',
-        component: AuthSignupComponent,
-      },
-      {
-        path: 'reset-password',
-        component: AuthResetPasswordComponent,
-      },
-      {
-        path: 'forgot-password',
-        component: AuthForgotPasswordComponent,
-      },
-      {
-        path: 'confirmation',
-        component: AuthConfirmationComponent,
-      },
-    ],
-  },
-  {
-    path: 'full',
-    component: AppLayoutDividedAltComponent,
-    children: [
-      {
-        path: 'signin',
-        component: AuthLoginComponent,
-      },
-      {
-        path: 'signup',
-        component: AuthSignupComponent,
-      },
+      // {
+      //   path: 'signup',
+      //   component: AuthSignupComponent,
+      // },
       {
         path: 'reset-password',
         component: AuthResetPasswordComponent,
@@ -69,58 +44,96 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'full-middle',
-    component: AppLayoutDividedFullComponent,
-    children: [
-      {
-        path: 'signin',
-        component: AuthLoginComponent,
-      },
-      {
-        path: 'signup',
-        component: AuthSignupComponent,
-      },
-      {
-        path: 'reset-password',
-        component: AuthResetPasswordComponent,
-      },
-      {
-        path: 'forgot-password',
-        component: AuthForgotPasswordComponent,
-      },
-      {
-        path: 'confirmation',
-        component: AuthConfirmationComponent,
-      },
-    ],
-  },
-  {
-    path: 'basic',
-    component: AppLayoutBasicComponent,
-    children: [
-      {
-        path: 'signin',
-        component: AuthLoginComponent,
-      },
-      {
-        path: 'signup',
-        component: AuthSignupComponent,
-      },
-      {
-        path: 'reset-password',
-        component: AuthResetPasswordComponent,
-      },
-      {
-        path: 'forgot-password',
-        component: AuthForgotPasswordComponent,
-      },
-      {
-        path: 'confirmation',
-        component: AuthConfirmationComponent,
-      },
-    ],
-  },
+  // {
+  //   path: '**',
+  //   // redirectTo: '/app/dashboard/default',
+  //   redirectTo: '/signin',
+  //   pathMatch: 'full',
+  // },
+  // {
+  //   path: '',
+  //   // redirectTo: '/app/dashboard/default',
+  //   redirectTo: '/signin',
+  //   pathMatch: 'full',
+  // },
+  // {
+  //   path: 'full',
+  //   component: AppLayoutDividedAltComponent,
+  //   children: [
+  //     {
+  //       path: 'signin',
+  //       component: AuthLoginComponent,
+  //     },
+  //     {
+  //       path: 'signup',
+  //       component: AuthSignupComponent,
+  //     },
+  //     {
+  //       path: 'reset-password',
+  //       component: AuthResetPasswordComponent,
+  //     },
+  //     {
+  //       path: 'forgot-password',
+  //       component: AuthForgotPasswordComponent,
+  //     },
+  //     {
+  //       path: 'confirmation',
+  //       component: AuthConfirmationComponent,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: 'full-middle',
+  //   component: AppLayoutDividedFullComponent,
+  //   children: [
+  //     {
+  //       path: 'signin',
+  //       component: AuthLoginComponent,
+  //     },
+  //     {
+  //       path: 'signup',
+  //       component: AuthSignupComponent,
+  //     },
+  //     {
+  //       path: 'reset-password',
+  //       component: AuthResetPasswordComponent,
+  //     },
+  //     {
+  //       path: 'forgot-password',
+  //       component: AuthForgotPasswordComponent,
+  //     },
+  //     {
+  //       path: 'confirmation',
+  //       component: AuthConfirmationComponent,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: 'basic',
+  //   component: AppLayoutBasicComponent,
+  //   children: [
+  //     {
+  //       path: 'signin',
+  //       component: AuthLoginComponent,
+  //     },
+  //     {
+  //       path: 'signup',
+  //       component: AuthSignupComponent,
+  //     },
+  //     {
+  //       path: 'reset-password',
+  //       component: AuthResetPasswordComponent,
+  //     },
+  //     {
+  //       path: 'forgot-password',
+  //       component: AuthForgotPasswordComponent,
+  //     },
+  //     {
+  //       path: 'confirmation',
+  //       component: AuthConfirmationComponent,
+  //     },
+  //   ],
+  // },
   {
     path: 'book-a-demo',
     component: AuthBookADemoComponent,
@@ -135,8 +148,8 @@ const routes: Routes = [
           {
             path: '',
             component: ComingSoonComponent,
-          }
-        ]
+          },
+        ],
       },
       {
         path: 'full',
@@ -145,8 +158,8 @@ const routes: Routes = [
           {
             path: '',
             component: ComingSoonComponent,
-          }
-        ]
+          },
+        ],
       },
       {
         path: 'full-middle',
@@ -155,8 +168,8 @@ const routes: Routes = [
           {
             path: '',
             component: ComingSoonComponent,
-          }
-        ]
+          },
+        ],
       },
       {
         path: 'basic',
@@ -165,16 +178,15 @@ const routes: Routes = [
           {
             path: '',
             component: ComingSoonComponent,
-          }
-        ]
+          },
+        ],
       },
     ],
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule {
-}
+export class AuthRoutingModule {}

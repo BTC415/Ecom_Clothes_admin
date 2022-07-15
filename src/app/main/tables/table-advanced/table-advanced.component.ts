@@ -9,7 +9,7 @@ import {getDummyModel} from "../../../../@youpez/data/dummy"
 export class TableAdvancedComponent implements OnInit {
 
   public model = getDummyModel()
-  public searchModel
+  public searchModel:any;
   public size = 'md'
   public offset = {x: -9, y: 0}
   public batchText = ''

@@ -1,8 +1,10 @@
 <ng-template #customTableItemTemplate let-data="data">
-  <a [attr.href]="data.link">{{data.name}} {{data.surname}}</a>
+  <a [attr.href]="data.link">{{ data.name }} {{ data.surname }}</a>
 </ng-template>
 <ng-template #customHeaderTemplate let-data="data">
-  <i><a [attr.href]="data.link">{{data.name}}</a></i>
+  <i
+    ><a [attr.href]="data.link">{{ data.name }}</a></i
+  >
 </ng-template>
 <ibm-table
   [model]="model"
@@ -14,5 +16,17 @@
   [striped]="false"
   (sort)="customSort($event)"
   (rowClick)="onRowClick($event)"
-  [isDataGrid]="isDataGrid">
+  [isDataGrid]="isDataGrid"
+>
 </ibm-table>
+<ng-template #statusToggle let-data="data">
+  <ibm-toggle
+    class="app-ibm-toggle-fix"
+    [onText]="'Block'"
+    [offText]="'Unblock'"
+    [checked]="data.status"
+    size="md"
+    (change)="StatusToggleChange($event, data.id)"
+  >
+  </ibm-toggle>
+</ng-template>

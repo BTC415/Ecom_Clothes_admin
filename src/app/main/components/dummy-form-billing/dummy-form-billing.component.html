@@ -4,7 +4,8 @@
       <div class="app-input">
         <ibm-label
           [invalidText]="'This field is required or incorrect'"
-          [invalid]="isValid('name')">
+          [invalid]="isValid('name')"
+        >
           Name
           <input
             type="text"
@@ -14,7 +15,8 @@
             size="md"
             [theme]="theme"
             [placeholder]="''"
-            [autocomplete]="false">
+            [autocomplete]="false"
+          />
         </ibm-label>
       </div>
     </div>
@@ -29,7 +31,8 @@
           [invalidText]="'This field is required or incorrect'"
           dropUp="false"
           [theme]="theme"
-          placeholder="">
+          placeholder=""
+        >
           <ibm-dropdown-list [items]="countries"></ibm-dropdown-list>
         </ibm-dropdown>
       </div>
@@ -44,7 +47,8 @@
           [invalidText]="'This field is required or incorrect'"
           dropUp="false"
           [theme]="theme"
-          placeholder="">
+          placeholder=""
+        >
           <ibm-dropdown-list [items]="usStates"></ibm-dropdown-list>
         </ibm-dropdown>
       </div>
@@ -54,8 +58,7 @@
   <div fxLayout="row wrap" class="app-form__row">
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(25)" class="app-form__item">
       <div class="app-input">
-        <ibm-label
-          [invalid]="isValid('zip')">
+        <ibm-label [invalid]="isValid('zip')">
           Zip code
           <input
             type="text"
@@ -65,7 +68,8 @@
             size="md"
             [theme]="theme"
             [placeholder]="''"
-            [autocomplete]="false">
+            [autocomplete]="false"
+          />
         </ibm-label>
       </div>
     </div>
@@ -73,7 +77,8 @@
       <div class="app-input">
         <ibm-label
           [invalidText]="'This field is required or incorrect'"
-          [invalid]="isValid('city')">
+          [invalid]="isValid('city')"
+        >
           City
           <input
             formControlName="city"
@@ -82,7 +87,8 @@
             size="md"
             [theme]="theme"
             [placeholder]="''"
-            [autocomplete]="false">
+            [autocomplete]="false"
+          />
         </ibm-label>
       </div>
     </div>
@@ -90,7 +96,8 @@
       <div class="app-input">
         <ibm-label
           [invalidText]="'This field is required or incorrect'"
-          [invalid]="isValid('street')">
+          [invalid]="isValid('street')"
+        >
           Street address
           <input
             type="text"
@@ -100,7 +107,31 @@
             size="md"
             [theme]="theme"
             [placeholder]="''"
-            [autocomplete]="false">
+            [autocomplete]="false"
+          />
+        </ibm-label>
+      </div>
+    </div>
+    <div fxFlex="100%" class="app-form__item">
+      <div class="app-input">
+        <ibm-label
+          [invalidText]="'This field is required or incorrect'"
+          [invalid]="isValid('image')"
+          formControlName="image"
+        >
+          <ibm-file-uploader
+            drop="true"
+            [dropText]="'Drag and drop files here or upload'"
+            [title]="'File uploader'"
+            [description]="'only jpg, png'"
+            [buttonText]="'Add files'"
+            [buttonType]="'primary'"
+            [accept]="'.png,image/jpeg'"
+            [multiple]="true"
+            [size]="'normal'"
+            [disabled]="false"
+          >
+          </ibm-file-uploader>
         </ibm-label>
       </div>
     </div>
@@ -111,7 +142,8 @@
         [offText]="'Business use only'"
         [disabled]="false"
         [checked]="true"
-        size="md">
+        size="md"
+      >
       </ibm-toggle>
     </div>
     <div fxFlex="100%" class="app-form__item app-form__item--opts">
@@ -122,9 +154,10 @@
         </ibm-checkbox>
       </div>
       <ng-container *ngIf="isValid('condition')">
-        <div class="app-helper-text-01 app-color-danger">This field is required</div>
+        <div class="app-helper-text-01 app-color-danger">
+          This field is required
+        </div>
       </ng-container>
     </div>
   </div>
 </form>
-

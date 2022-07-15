@@ -1,35 +1,41 @@
 <div class="mb-8" fxHide fxShow.lt-md>
   <youpez-logo class="cursor-pointer" logoWidth="130px"></youpez-logo>
 </div>
-<h1 class="app-expressive-heading-06 mb-1">Sign in</h1>
-<div class="app-body-long-02 mb-8">
+<h1 class="app-expressive-heading-06 mb-4">Sign in</h1>
+<!-- <div class="app-body-long-02 mb-8">
   Don't have an account?
   <a ibmLink routerLink="../signup">Sign up</a>
-</div>
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+</div> -->
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="app-form">
     <div class="app-form__item">
       <ibm-label
         [helperText]="''"
         [invalid]="isValid('email')"
-        [invalidText]="'This field is required'">
+        [invalidText]="'Enter Email Address'"
+      >
         Email address
         <input
           formControlName="email"
           ibmText
           size="md"
+          type="email"
           [invalid]="isValid('email')"
           [disabled]="false"
           theme="light"
           [placeholder]="'Email address'"
-          [autocomplete]="true">
+          [autocomplete]="true"
+        />
       </ibm-label>
     </div>
     <div class="app-form__item">
       <ibm-label
         [helperText]="''"
         [invalid]="isValid('password')"
-        [invalidText]="'This field is required'">
+        [invalidText]="
+          'Use at least 7 characters. Use a mix of letters (uppercase and lowercase), numbers,special characters and symbols.'
+        "
+      >
         Password
         <input
           type="password"
@@ -40,27 +46,33 @@
           [disabled]="false"
           theme="light"
           [placeholder]="'Password'"
-          [autocomplete]="true">
+          [autocomplete]="true"
+        />
       </ibm-label>
     </div>
     <div class="app-form__item app-form__item--opts">
       <div class="flex justify-between items-center">
-        <ibm-checkbox
+        <!-- <ibm-checkbox
           checked="true">
           Remember me?
-        </ibm-checkbox>
+        </ibm-checkbox> -->
         <a ibmLink routerLink="../forgot-password">Forgot password?</a>
       </div>
     </div>
     <div class="app-form__submit">
-      <button type="submit" class="app-ibm-btn-full" ibmButton="primary" size="field">
+      <button
+        type="submit"
+        class="app-ibm-btn-full"
+        ibmButton="primary"
+        size="field"
+      >
         Sign In
         <svg class="bx--btn__icon" ibmIconArrowRight size="20"></svg>
       </button>
     </div>
   </div>
 </form>
-<div class="app-separator mt-8 mb-8">or Sign In with</div>
+<!-- <div class="app-separator mt-8 mb-8">or Sign In with</div>
 <div fxLayout="row" class="">
   <div fxFlex="50" class="mr-1">
     <button class="w-full"
@@ -84,5 +96,4 @@
       </svg>
     </button>
   </div>
-</div>
-
+</div> -->

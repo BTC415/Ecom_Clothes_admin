@@ -24,7 +24,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 import {environment} from '../environments/environment'
 import {EffectsModule} from '@ngrx/effects'
 import {AppEffects} from './store/app.effects'
-
+// import { BtnCellRenderer } from './btn-cell-renderer.component';
+import { AgGridModule } from '@ag-grid-community/angular'
+import { TableFullComponent } from './main/tables/table-full/table-full.component'
 @NgModule({
   declarations: [
     AppComponent
@@ -41,6 +43,7 @@ import {AppEffects} from './store/app.effects'
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects]),
     NgxMdModule.forRoot(),
+    AgGridModule.withComponents([TableFullComponent])
   ],
   providers: [],
   bootstrap: [AppComponent]
