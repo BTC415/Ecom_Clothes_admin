@@ -28,14 +28,20 @@ export class DummyFormBillingComponent implements OnInit {
   createForm() {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      country: ['', [Validators.required, Validators.minLength(3)]],
-      state: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      street: ['', [Validators.required]],
-      personal: [true, [Validators.required]],
-      image: ['', [Validators.required]],
-      condition: ['', [Validators.requiredTrue]],
+      price: ['', [Validators.required, Validators.minLength(3)]],
+      size: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      material: ['', [Validators.required]],
+      care: ['', [Validators.required]],
+      modelHeight: ['', [Validators.required]],
+      modelSize: ['', [Validators.required]],
+      quantity: ['', [Validators.requiredTrue]],
+      category: ['', [Validators.requiredTrue]],
+      color: ['', [Validators.requiredTrue]],
+      date: ['', [Validators.requiredTrue]],
+      discount: ['', [Validators.requiredTrue]],
+      product_collection: ['', [Validators.requiredTrue]],
+      images: ['', [Validators.required]],
     }, {updateOn: 'blur'})
   }
 
@@ -48,7 +54,7 @@ export class DummyFormBillingComponent implements OnInit {
     this.formGroup.reset()
   }
 
-  isValid(name) {
+  isValid(name) {    
     return isFormItemValid(this.formGroup, name)
   }
 
