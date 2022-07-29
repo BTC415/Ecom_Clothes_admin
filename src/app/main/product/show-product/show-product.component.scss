@@ -1,0 +1,180 @@
+.showproduct {
+  margin-top: -1rem;
+}
+
+thead {
+  border-bottom: 2px solid rgb(202, 200, 200);
+  height: 3.5rem;
+  line-height: 3;
+  text-align: center;
+  font-weight: 700;
+  // background-color: rgb(247, 243, 243);
+}
+tbody {
+  height: 3.5rem;
+  line-height: 3;
+  font-size: 14px;
+  text-align: center;
+}
+.btnupdate {
+  font-size: 21px;
+  margin-left: 25px;
+  color: darkslategray;
+  cursor: pointer;
+}
+
+.header {
+  padding: 2.2rem 1.1rem 1.1rem 1.1rem;
+  background: #161616;
+  color: #ffffff;
+}
+.product_list {
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: 0;
+}
+.main_container {
+  background-color: white;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  width: 67rem;
+  border-radius: 15px;
+  border: 1px solid rgb(202, 200, 200);
+}
+.form-control {
+  margin-top: 1rem;
+  width: 14rem;
+}
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+button.btndelete {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  width: 9rem;
+}
+button.btnAdd {
+  margin-left: 35rem;
+  margin-top: 1rem;
+  background: black;
+  color: white;
+  width: 9rem;
+  border-radius: 10px;
+}
+.menu-nav {
+  background-color: #44b;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-item {
+  color: #fcc;
+  padding: 3px;
+}
+
+.three-dots:after {
+  cursor: pointer;
+  color: black;
+  content: "\2807";
+  font-size: 20px;
+  padding: 0 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+a div {
+  padding: 2px;
+}
+.dropdown {
+  position: absolute;
+  right: 10px;
+  background-color: white;
+  color: black;
+  outline: none;
+  opacity: 0;
+  z-index: -1;
+  max-height: 0;
+  transition: opacity 0.1s, z-index 0.1s;
+  max-height: 5s;
+  margin-right: 6rem;
+  margin-top: -1rem;
+  box-shadow: 2px 2px 2px 2px #888888;
+  width: 4rem;
+}
+
+.dropdown-container:focus {
+  outline: none;
+}
+
+.dropdown-container:focus .dropdown {
+  opacity: 1;
+  z-index: 100;
+  max-height: 100vh;
+  transition: opacity 0.2s, z-index 0.2s;
+  max-height: 0.2s;
+}
+.deletehidden:target {
+  visibility: hidden;
+}
+// .ngx-pagination .disabled {
+//   padding: 0.1875rem 0.625rem;
+//   /* color: #cacaca; */
+//   cursor: default;
+//   color: red !important;
+//   text-decoration: none;
+// }
+// .ngx-pagination .current {
+//   padding: 0.1875rem 0.625rem;
+//   // background: #2199e8;
+//   background: black !important;
+//   color: #fefefe;
+//   cursor: default;
+// }
+
+// .ngx-pagination {
+//   padding-left: 0px !important;
+// }
+
+// .ngx-pagination .current,
+// .btn-info {
+//   background: red !important;
+//   // background: #17a2b8 !important;
+//   border: transparent !important;
+//   border-radius: 20px !important;
+// }
+
+// .ngx-pagination .current:hover {
+//   background: red !important;
+//   border-radius: 20px !important;
+//   border: transparent !important;
+// }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.ngx-pagination .current {
+  padding: 0.1875rem 0.625rem;
+  background: black !important;
+  color: #fefefe;
+  cursor: default;
+}
+.product_image {
+  border-radius: 29px;
+  margin-left: 3px;
+  margin-right: -12px;
+}
+.products_length {
+  margin-left: 42rem;
+}

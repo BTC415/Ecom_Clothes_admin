@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 14%;
+}
+#Filebutton {
+  background: black;
+  width: 7rem;
+  color: white;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.4;
+  font-size: 16px;
+  cursor: pointer;
+}
+.custom_file_set{
+    display: flex;
+    margin-top: 1em;
+    flex-wrap: wrap;
+}
+.Select_image{
+    width: 100%;
+    max-width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.custom_file_set > div{
+    margin: 10px;
+}
+.custom_close_fa{
+    position: absolute;
+    z-index: 1;
+    background-color: #000;
+    padding: 5px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 9px;
+    cursor: pointer;
+    line-height: 0.9;
+}

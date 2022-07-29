@@ -28,6 +28,41 @@ export class ApiService {
   UserStatus(data: any): Observable<any> {
     return this.http.put('http://localhost:3000/userstatus', data);
   }
+
+  //add Product
+  AddProduct(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/addproduct', data);
+  }
+
+  //show Product
+  ShowProducts(): Observable<any> {
+    return this.http.get('http://localhost:3000/showproduct');
+  }
+
+  //delete product
+  DeleteProduct(_id: any): Observable<any> {
+    return this.http.delete('http://localhost:3000/deleteproduct', {
+      params: { _id: _id },
+    });
+  }
+
+  //get one Product
+  GetOneProduct(_id: any): Observable<any> {
+    return this.http.get('http://localhost:3000/product/' + _id);
+  }
+
+  //delete images (update product)
+  UpdateImages(pid: any, iid: any): Observable<any> {
+    return this.http.delete('http://localhost:3000/deleteimage', {
+      params: { pid: pid, iid: iid },
+    });
+  }
+
+  // update Products
+  UpdateProduct(data: any): Observable<any> {
+    return this.http.put('http://localhost:3000/updateproduct', data);
+  }
+
   //loggedin
   Userloggedin(): Observable<any> {
     return this.http.get('http://localhost:3000/userloggedin', {

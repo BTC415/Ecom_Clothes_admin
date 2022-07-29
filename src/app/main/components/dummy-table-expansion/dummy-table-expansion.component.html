@@ -30,3 +30,15 @@
   >
   </ibm-toggle>
 </ng-template>
+<!-- <ng-template #displayImage let-data="data">
+  <img [src]="env.profileApiUrl + data.image" *ngIf="data.image else avatar"/>
+  <ng-template #avatar>
+    <ngx-avatar name="John Doe"></ngx-avatar>
+  </ng-template>
+</ng-template> -->
+<ng-template #displayImage let-data="data">
+  <img [src]="env.profileApiUrl + data.image" *ngIf="data.image" height="200px" width="200px"/>
+</ng-template>
+<ng-template #avatar>
+  <ngx-avatar *ngIf="!data.image" name="John Doe"></ngx-avatar>
+</ng-template>

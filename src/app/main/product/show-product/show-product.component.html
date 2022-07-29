@@ -1,0 +1,232 @@
+<div class="container header">
+  <div class="row">
+    <p class="product_list">Product List</p>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="main_container">
+      <div style="display: flex; margin-bottom: 1rem">
+        <input
+          class="form-control"
+          type="text"
+          name="search"
+          [(ngModel)]="searchText"
+          autocomplete="off"
+          placeholder="Search"
+        />
+        <button class="btnAdd" (click)="AddProduct()">Add Product</button>
+        <button
+          class="btndelete"
+          (click)="deleteMultiple_products(multiplecontent, notmultiplecontent)"
+        >
+          Delete Products
+        </button>
+      </div>
+      <table class="table showproduct">
+        <thead class="">
+          <tr>
+            <th scope="col" *ngIf="products_length !== 0">
+              <input
+                type="checkbox"
+                [(ngModel)]="masterSelected"
+                name="list_name"
+                value="m1"
+                (change)="checkUncheckAll()"
+              />
+            </th>
+            <th scope="col">Code</th>
+            <th scope="col"></th>
+            <th scope="col">
+              Name
+              <i
+                (click)="onSortClick($event, 'name')"
+                class="my-icon fa fa-chevron-up"
+              ></i>
+            </th>
+            <th scope="col">
+              Category
+              <i
+                (click)="onSortClick($event, 'category')"
+                class="my-icon fa fa-chevron-up"
+              ></i>
+            </th>
+            <th scope="col">
+              Collection
+              <i
+                (click)="onSortClick($event, 'product_collection')"
+                class="my-icon fa fa-chevron-up"
+              ></i>
+            </th>
+            <th scope="col">
+              Quantity<i
+                (click)="sortNumberColumn($event)"
+                class="my-icon fa fa-chevron-up"
+              ></i>
+            </th>
+            <th scope="col">
+              Price<i
+                (click)="sortNumberColumn($event)"
+                class="my-icon fa fa-chevron-up"
+              ></i>
+            </th>
+            <th scope="col">
+              Discount %<i
+                (click)="sortNumberColumn($event)"
+                class="my-icon fa fa-chevron-up"
+              ></i>
+            </th>
+
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let product of products
+                | filter: searchText
+                | paginate: { itemsPerPage: 6, currentPage: page }
+            "
+          >
+            <td>
+              <input
+                type="checkbox"
+                [(ngModel)]="product.isSelected"
+                name="list_name"
+                value="{{ product._id }}"
+                (change)="isAllSelected()"
+              />
+            </td>
+            <td>{{ product.code }}</td>
+            <td>
+              <img
+                class="product_image"
+                [src]="env.apiUrl + 'product_images/' + product.images[0].name"
+                height="50px"
+                width="50px"
+              />
+            </td>
+            <td class="custom_img_set">
+              {{ product.name }}
+            </td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.product_collection }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price | currency }}</td>
+            <td>{{ product.discount }}%</td>
+            <td>
+              <div class="dropdown-container" tabindex="-1">
+                <div class="three-dots"></div>
+                <div class="dropdown">
+                  <a><div (click)="btnUpdate(product._id)">Edit</div></a>
+                  <a
+                    ><div
+                      class="deletehidden"
+                      (click)="open(content, product._id)"
+                    >
+                      Delete
+                    </div></a
+                  >
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="display: flex">
+        <pagination-controls
+          class="pagination_table"
+          (pageChange)="page = $event"
+        ></pagination-controls>
+        <p class="products_length">Total Product : {{ products_length }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you certain you want to remove this Product?</p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="d('Cross click')"
+      >
+        Cancel
+      </button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('yes')">
+        Delete
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #multiplecontent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Are you sure you want to remove total of
+        {{ checkedList.length }} Products altogether?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="d('Cross click')"
+      >
+        Cancel
+      </button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('yes')">
+        Delete
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #notmultiplecontent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Choose the Product, then click "Delete"</p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="d('Cross click')"
+      >
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+</div>

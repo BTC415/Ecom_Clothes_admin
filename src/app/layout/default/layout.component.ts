@@ -70,6 +70,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
             name: 'textCreation',
           },
         },
+        {
+          name: 'Show Products',
+          url: '/app/product/show-products',
+          prefix: {
+            type: 'ibm-icon',
+            name: 'textCreation',
+          },
+        },
       ],
     },
 

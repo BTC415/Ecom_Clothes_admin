@@ -60,6 +60,7 @@ import {StarterApplicationBasicComponent} from "./starters/application/starter-a
 import {StarterApplicationAdvancedComponent} from "./starters/application/starter-application-advanced/starter-application-advanced.component"
 import {StarterApplicationComplexComponent} from "./starters/application/starter-application-complex/starter-application-complex.component"
 import { AuthGuard } from '../services/auth.guard';
+import { ShowProductComponent } from './product/show-product/show-product.component'
 const starterPages = [
   {
     path: 'full-width',
@@ -164,6 +165,30 @@ const routeForPages = [
     ],
   },
   {
+    path: 'product',
+    data: {
+      breadcrumb: 'Product'
+    },
+    children: [
+      {
+        path: 'show-products',
+        component: ShowProductComponent,
+        data: {
+          breadcrumb: 'Show Products'
+        },
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'add-product',
+        component: DashboardAnalyticsComponent,
+        data: {
+          breadcrumb: 'Add Product'
+        },
+      },
+    ],
+  },
+
+  {
     path: 'typography',
     component: TypographyComponent,
     data: {
@@ -250,6 +275,13 @@ const routeForPages = [
       },
       {
         path: 'validation',
+        component: FormsValidationComponent,
+        data: {
+          breadcrumb: 'Validation'
+        },
+      },
+      {
+        path: 'validation/:id',
         component: FormsValidationComponent,
         data: {
           breadcrumb: 'Validation'

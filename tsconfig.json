@@ -7,8 +7,11 @@
 {
   "files": [],
   "compilerOptions": {
-    "experimentalDecorators": true,
+    "experimentalDecorators": true
   },
+  "angularCompilerOptions": {
+    "enableIvy": false
+ },
   "references": [
     {
       "path": "./tsconfig.app.json"

@@ -26,10 +26,16 @@ import {EffectsModule} from '@ngrx/effects'
 import {AppEffects} from './store/app.effects'
 // import { BtnCellRenderer } from './btn-cell-renderer.component';
 import { AgGridModule } from '@ag-grid-community/angular'
-import { TableFullComponent } from './main/tables/table-full/table-full.component'
+import { TableFullComponent } from './main/tables/table-full/table-full.component';
+import { ShowProductComponent } from './main/product/show-product/show-product.component'
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { AvatarModule } from 'ngx-avatar';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShowProductComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,10 @@ import { TableFullComponent } from './main/tables/table-full/table-full.componen
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects]),
     NgxMdModule.forRoot(),
-    AgGridModule.withComponents([TableFullComponent])
+    AgGridModule.withComponents([TableFullComponent]),
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

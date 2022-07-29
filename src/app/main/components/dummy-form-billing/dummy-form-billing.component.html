@@ -1,13 +1,13 @@
-<form [formGroup]="formGroup" class="app-form">
+<form [formGroup]="ProductForm" enctype="multipart/form-data" class="app-form">
   <div fxLayout="row wrap" class="app-form__row">
-
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(50)" class="app-form__item">
       <div class="app-input">
+        <input type="text" formControlName="product_id" hidden/>
         <ibm-label
           [invalidText]="'This field is required or incorrect'"
           [invalid]="isValid('name')"
         >
-          Name
+          Product Name
           <input
             type="text"
             formControlName="name"
@@ -78,10 +78,13 @@
   <div fxLayout="row wrap" class="app-form__row">
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(25)" class="app-form__item">
       <div class="app-input">
-        <ibm-label [invalid]="isValid('price')">
+        <ibm-label
+          [invalid]="isValid('price')"
+          [invalidText]="'This field is required or incorrect'"
+        >
           Price
           <input
-            type="text"
+            type="number"
             formControlName="price"
             [invalid]="isValid('price')"
             ibmText
@@ -95,17 +98,14 @@
     </div>
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(25)" class="app-form__item">
       <div class="app-input">
-        <ibm-label
-          [invalidText]="'This field is required or incorrect'"
-          [invalid]="isValid('discount')"
-        >
-          Discount
+        <ibm-label>
+          Discount %
           <input
             formControlName="discount"
-            [invalid]="isValid('discount')"
             ibmText
             size="md"
             [theme]="theme"
+            type="number"
             [placeholder]="''"
             [autocomplete]="false"
           />
@@ -159,12 +159,13 @@
           size="md"
           [invalid]="isValid('size')"
           [invalidText]="'This field is required or incorrect'"
-          dropUp="false"
+          [dropUp]="false"
           [theme]="theme"
           placeholder=""
         >
-          <ibm-dropdown-list [items]="countries"></ibm-dropdown-list>
+          <ibm-dropdown-list [items]="size"></ibm-dropdown-list>
         </ibm-dropdown>
+        
       </div>
     </div>
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(50)" class="app-form__item">
@@ -195,32 +196,47 @@
           size="md"
           [invalid]="isValid('modelSize')"
           [invalidText]="'This field is required or incorrect'"
-          dropUp="false"
+          [dropUp]="false"
           [theme]="theme"
           placeholder=""
         >
-          <ibm-dropdown-list [items]="countries"></ibm-dropdown-list>
+          <ibm-dropdown-list [items]="size"></ibm-dropdown-list>
         </ibm-dropdown>
       </div>
     </div>
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(50)" class="app-form__item">
-      <div class="app-input">
-        <ibm-label
-          [invalidText]="'This field is required or incorrect'"
-          [invalid]="isValid('date')"
-        >
-          Date
-          <input
-            formControlName="date"
+      <!-- <div class="mb-6"> -->
+      <ibm-label
+        [invalidText]="'This field is required or incorrect'"
+        [invalid]="isValid('date')"
+      >
+        <!-- <ibm-date-picker
+            [label]="'Date'"
+            [placeholder]="'mm/dd/yyyy'"
+            [language]="'en'"
+            [size]="'md'"
+            dropUp="false"
             [invalid]="isValid('date')"
-            ibmText
-            size="md"
-            [theme]="theme"
-            [placeholder]="''"
-            [autocomplete]="false"
-          />
-        </ibm-label>
-      </div>
+            [theme]="'light'"
+            [value]="''"
+            [disabled]="false"
+            [dateFormat]="'m/d/Y'"
+          >
+          </ibm-date-picker> -->
+          Date
+        <input
+          formControlName="date"
+          [invalid]="isValid('date')"
+          ibmText
+          size="md"
+          type="date"
+          [min]="now"
+          [theme]="theme"
+          [placeholder]="''"
+          [autocomplete]="false"
+        />
+      </ibm-label>
+      <!-- </div> -->
     </div>
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(25)" class="app-form__item">
       <div class="app-input">
@@ -249,7 +265,7 @@
         >
           Quantity
           <input
-            type="text"
+            type="number"
             formControlName="quantity"
             [invalid]="isValid('quantity')"
             ibmText
@@ -269,50 +285,110 @@
           size="md"
           [invalid]="isValid('category')"
           [invalidText]="'This field is required or incorrect'"
-          dropUp="false"
+          [dropUp]="false"
           [theme]="theme"
           placeholder=""
         >
-          <ibm-dropdown-list [items]="countries"></ibm-dropdown-list>
+          <ibm-dropdown-list [items]="category"></ibm-dropdown-list>
         </ibm-dropdown>
       </div>
     </div>
     <div fxFlex="100%" [fxFlex.gt-md]="getRowLayout(50)" class="app-form__item">
       <div class="app-input">
         <ibm-dropdown
-          [label]="'product_collection'"
+          [label]="'Product Collection'"
           formControlName="product_collection"
           size="md"
           [invalid]="isValid('product_collection')"
           [invalidText]="'This field is required or incorrect'"
-          dropUp="false"
+          [dropUp]="false"
           [theme]="theme"
           placeholder=""
         >
-          <ibm-dropdown-list [items]="countries"></ibm-dropdown-list>
+          <ibm-dropdown-list [items]="collection"></ibm-dropdown-list>
         </ibm-dropdown>
       </div>
     </div>
     <div fxFlex="100%" class="app-form__item">
       <div class="app-input">
-        <ibm-label
-          [invalidText]="'This field is required or incorrect'"
+        <!-- <ibm-label
           [invalid]="isValid('images')"
+          [invalidText]="'This field is required or incorrect'"
         >
           <ibm-file-uploader
             drop="true"
             [dropText]="'Drag and drop files here or upload'"
             [title]="'File uploader'"
-            [description]="'only jpg, png'"
             [buttonText]="'Add files'"
             [buttonType]="'primary'"
-            [accept]="'.png,image/jpeg'"
             [multiple]="true"
             [size]="'normal'"
             [disabled]="false"
+            [accept]="'image/*'"
+            (change)="onFileSelect($event)"
           >
           </ibm-file-uploader>
+        </ibm-label> -->
+      </div>
+      <div id="File-Body">
+        <label id="File-Lable" for="File-For">
+          <div id="Filebutton">Select File</div>
+        </label>
+        <ibm-label
+          for="File-For"
+          [invalid]="isValid('images')"
+          [invalidText]="'This field is required or incorrect'"
+        ></ibm-label>
+        <input
+          type="file"
+          accept="image/*"
+          value=""
+          id="File-For"
+          multiple
+          (change)="onFileSelect($event)"
+          style="display: none"
+        />
+      </div>
+
+      <!-- <div class="col-8" id="File-Body">
+        <label id="File-Lable" for="File-For">
+          <div id="Filebutton">Edit</div>
+        </label>
+        <ibm-label
+          [invalid]="isValid('images')"
+          [invalidText]="'This field is required or incorrect'"
+        >
+          <input
+            type="file"
+            accept="image/*"
+            value=""
+            id="File-For"
+            multiple
+            (change)="onFileSelect($event)"
+          />
         </ibm-label>
+      </div> -->
+      <div class="custom_file_set">
+        <div class="container" *ngFor="let preview of previews">
+          <i
+            class="fa fa-close custom_close_fa"
+            (click)="removeImage(preview)"
+          ></i>
+          <img [src]="preview" class="Select_image" />
+        </div>
+      </div>
+
+      <div class="custom_file_set" *ngIf="paramsId">
+        <div class="container" *ngFor="let updateimage of updateImages">
+          <i
+            class="fa fa-close custom_close_fa"
+            (click)="UpdateImage(updateimage._id)"
+          ></i>
+          <img
+            [src]="env.apiUrl + 'product_images/' + updateimage.name"
+            class="Select_image"
+          />
+        </div>
       </div>
     </div>
   </div>

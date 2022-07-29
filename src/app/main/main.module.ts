@@ -73,7 +73,10 @@ import { StarterRightSidebarTabsComponent } from './starters/right-sidebar/start
 import { StarterApplicationBasicComponent } from './starters/application/starter-application-basic/starter-application-basic.component';
 import { StarterApplicationAdvancedComponent } from './starters/application/starter-application-advanced/starter-application-advanced.component';
 import { StarterApplicationComplexComponent } from './starters/application/starter-application-complex/starter-application-complex.component'
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { AvatarModule } from 'ngx-avatar';
+// import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     TypographyComponent,
@@ -150,7 +153,11 @@ import { StarterApplicationComplexComponent } from './starters/application/start
     SharedModule,
     ChartsModule,
     AgGridModule.withComponents([]),
-    AgGridModule.withComponents([TableFullComponent])
+    AgGridModule.withComponents([TableFullComponent]),
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    AvatarModule
+    // ToastrModule.forRoot(),
   ]
 })
 export class MainModule {

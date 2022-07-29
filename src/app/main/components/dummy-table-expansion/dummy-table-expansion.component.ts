@@ -1,3 +1,4 @@
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 import {
   Component,
   OnInit,
@@ -12,7 +13,7 @@ import {
   TableModel,
 } from 'carbon-components-angular';
 import { ApiService } from 'src/app/services/api.service';
-
+import { environment } from '../../../../environments/environment';
 class CustomHeaderItem extends TableHeaderItem {
   // used for custom sorting
   compare(one: TableItem, two: TableItem) {
@@ -58,14 +59,24 @@ export class DummyTableExpansionComponent implements OnInit {
   customTableItemTemplate: TemplateRef<any>;
   @ViewChild('statusToggle', { static: true })
   statusToggle: TemplateRef<any>;
+  @ViewChild('displayImage', { static: true })
+  displayImage: TemplateRef<any>;
+
   constructor(private api: ApiService) {}
   id: any;
+  env = environment;
   ngOnInit() {
     this.api.Allusers().subscribe({
       next: (res) => {
         res.data.map((m: any, i: any) => {
-          m.status = m.status === 'block' ? true : false
+          m.status = m.status === 'block' ? true : false;
+          console.log('image', m.image);
+
           this.model.data[i] = [
+            new TableItem({
+              data: { image: m.image, fullName: m.firstname + ' ' + m.lastname },
+              template: this.displayImage,
+            }),
             new TableItem({ data: m.firstname }),
             new TableItem({ data: m.lastname }),
             new TableItem({ data: m.email }),
@@ -82,6 +93,10 @@ export class DummyTableExpansionComponent implements OnInit {
     });
 
     this.model.header = [
+      new CustomHeaderItem({
+        data: { name: 'Profile' },
+        template: this.customHeaderTemplate,
+      }),
       new TableHeaderItem({ data: 'First Name' }),
       new CustomHeaderItem({
         data: { name: 'Last Name' },
@@ -112,8 +127,8 @@ export class DummyTableExpansionComponent implements OnInit {
   }
 
   StatusToggleChange(event: any, id: any) {
-    let status = event.checked ? 'block' : 'unblock'
-    const statusObj = { id: id, status: status};
+    let status = event.checked ? 'block' : 'unblock';
+    const statusObj = { id: id, status: status };
     // console.log('statusObj', statusObj);
     this.api.UserStatus(statusObj).subscribe({
       next: (res) => {
