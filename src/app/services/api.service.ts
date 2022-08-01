@@ -1,71 +1,72 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
+  env: any = environment;
   constructor(private http: HttpClient) {}
 
   UserLogin(data: any): Observable<any> {
-    return this.http.post('http://localhost:3000/login', data);
+    return this.http.post(this.env.apiUrl + 'login', data);
   }
 
   //get all users
   Allusers(): Observable<any> {
-    return this.http.get('http://localhost:3000/allusers');
+    return this.http.get(this.env.apiUrl + 'allusers');
   }
   //send email
   SendEmail(data: any): Observable<any> {
-    return this.http.post('http://localhost:3000/sendmail', { email: data });
+    return this.http.post(this.env.apiUrl + 'sendmail', { email: data });
   }
   //change password
   ForgotPassword(data: any): Observable<any> {
-    return this.http.put('http://localhost:3000/forgotpwd', data);
+    return this.http.put(this.env.apiUrl + 'forgotpwd', data);
   }
   //userstatus (block & unblock)
   UserStatus(data: any): Observable<any> {
-    return this.http.put('http://localhost:3000/userstatus', data);
+    return this.http.put(this.env.apiUrl + 'userstatus', data);
   }
 
   //add Product
   AddProduct(data: any): Observable<any> {
-    return this.http.post('http://localhost:3000/addproduct', data);
+    return this.http.post(this.env.apiUrl + 'addproduct', data);
   }
 
   //show Product
   ShowProducts(): Observable<any> {
-    return this.http.get('http://localhost:3000/showproduct');
+    return this.http.get(this.env.apiUrl + 'showproduct');
   }
 
   //delete product
   DeleteProduct(_id: any): Observable<any> {
-    return this.http.delete('http://localhost:3000/deleteproduct', {
+    return this.http.delete(this.env.apiUrl + 'deleteproduct', {
       params: { _id: _id },
     });
   }
 
   //get one Product
   GetOneProduct(_id: any): Observable<any> {
-    return this.http.get('http://localhost:3000/product/' + _id);
+    return this.http.get(this.env.apiUrl + 'product/' + _id);
   }
 
   //delete images (update product)
   UpdateImages(pid: any, iid: any): Observable<any> {
-    return this.http.delete('http://localhost:3000/deleteimage', {
+    return this.http.delete(this.env.apiUrl + 'deleteimage', {
       params: { pid: pid, iid: iid },
     });
   }
 
   // update Products
   UpdateProduct(data: any): Observable<any> {
-    return this.http.put('http://localhost:3000/updateproduct', data);
+    return this.http.put(this.env.apiUrl + 'updateproduct', data);
   }
 
   //loggedin
   Userloggedin(): Observable<any> {
-    return this.http.get('http://localhost:3000/userloggedin', {
+    return this.http.get(this.env.apiUrl + 'userloggedin', {
       headers: this.getHeaders(),
     });
   }
