@@ -1,0 +1,129 @@
+<div class="container header">
+  <div class="row">
+    <p class="product_list">Contact Queries</p>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="main_container">
+      <div style="display: flex; margin-bottom: 1rem">
+        <select
+          class="form-select"
+          #items
+          (change)="onSelected(items.value)"
+          aria-label="Default select example"
+        >
+          <option value="" disabled>Contact Queries</option>
+          <option value={{status}} *ngFor="let status of statusDropdown">{{status | titlecase}}</option>
+        </select>
+      </div>
+      <table class="table showproduct">
+        <thead class="">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Message</th>
+            <th scope="col" *ngIf="selectedStatus !== 'respond'">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of contactData">
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.message }}</td>
+            <td>{{ item.phone_number }}</td>
+            <td *ngIf="item.status !== 'respond'">
+              <div class="dropdown-container" tabindex="-1">
+                <div class="three-dots"></div>
+                <div class="dropdown">
+                  <a *ngIf="item.status == 'pending' || item.status=='ignore'"><div>Respond</div></a>
+                  <a *ngIf="item.status == 'pending'"><div class="deletehidden">Ignore</div></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #content let-modal class="supportmodel">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Respond</h4>
+      <button
+        type="button"
+        class="btn close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true" class="close"> × </span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formSupport">
+        <label>To</label>
+        <input
+          type="email"
+          class="form-control suppotinput"
+          formControlName="to"
+          [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+        />
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Email is required</div>
+          <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+        </div>
+        <label>To</label>
+        <input
+          class="form-control suppotinput"
+          formControlName="to"
+          type="email"
+          [ngClass]="{ 'is-invalid': submitted && f['to'].errors }"
+        />
+        <div *ngIf="submitted && f['to'].errors" class="invalid-feedback">
+          <div *ngIf="f['to'].errors['required']">Email is required</div>
+          <div *ngIf="f['to'].errors['minlength']">
+            Name must be at least 3 characters
+          </div>
+          <div *ngIf="f['name'].errors['maxlength']">
+            Name must not exceed 20 characters
+          </div>
+        </div>
+        <label>How can we help you?</label>
+        <textarea
+          class="form-control suppotinput"
+          formControlName="message"
+          rows="4"
+          cols="50"
+          [ngClass]="{ 'is-invalid': submitted && f['message'].errors }"
+        ></textarea>
+        <div *ngIf="submitted && f['message'].errors" class="invalid-feedback">
+          <div *ngIf="f['message'].errors['required']">Message is required</div>
+          <div *ngIf="f['message'].errors['minlength']">
+            Message must be at least 3 characters
+          </div>
+          <div *ngIf="f['message'].errors['maxlength']">
+            Message must not exceed 40 characters
+          </div>
+        </div>
+        <label>Attachments</label>
+        <div class="btn btnfile">
+          <input type="file" class="inputfile" (change)="onFileSelect($event)" />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="modal.dismiss('Cross click')"
+          >
+            Cancel
+          </button>
+          <button type="button" class="btn btn-outline-dark" (click)="btnSend()">
+            Send
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+</div>

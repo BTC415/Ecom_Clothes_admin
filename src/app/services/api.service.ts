@@ -64,6 +64,11 @@ export class ApiService {
     return this.http.put(this.env.apiUrl + 'updateproduct', data);
   }
 
+  //get contact data
+  getContactData():Observable<any>{
+    return this.http.get("http://localhost:3000/getcontactdata")
+  }
+
   //loggedin
   Userloggedin(): Observable<any> {
     return this.http.get(this.env.apiUrl + 'userloggedin', {

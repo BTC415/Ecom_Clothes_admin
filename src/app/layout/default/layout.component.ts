@@ -80,6 +80,28 @@ export class LayoutComponent implements OnInit, OnDestroy {
         },
       ],
     },
+    {
+      groupName: 'Form Details',
+      opened: true,
+      children: [
+        {
+          name: 'Support Info',
+          url: '/app/support/support-info',
+          prefix: {
+            type: 'ibm-icon',
+            name: 'textCreation',
+          },
+        },
+        {
+          name: 'Contact Info',
+          url: '/app/contact/contact-info',
+          prefix: {
+            type: 'ibm-icon',
+            name: 'textCreation',
+          },
+        },
+      ],
+    },
 
     // {
     //   name: 'Platform analytics',

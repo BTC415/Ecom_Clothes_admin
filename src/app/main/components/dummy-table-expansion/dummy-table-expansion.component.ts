@@ -73,10 +73,10 @@ export class DummyTableExpansionComponent implements OnInit {
           console.log('image', m.image);
 
           this.model.data[i] = [
-            new TableItem({
-              data: { image: m.image, fullName: m.firstname + ' ' + m.lastname },
-              template: this.displayImage,
-            }),
+            // new TableItem({
+            //   data: { image: m.image, fullName: m.firstname + ' ' + m.lastname },
+            //   template: this.displayImage,
+            // }),
             new TableItem({ data: m.firstname }),
             new TableItem({ data: m.lastname }),
             new TableItem({ data: m.email }),
@@ -93,10 +93,10 @@ export class DummyTableExpansionComponent implements OnInit {
     });
 
     this.model.header = [
-      new CustomHeaderItem({
-        data: { name: 'Profile' },
-        template: this.customHeaderTemplate,
-      }),
+      // new CustomHeaderItem({
+      //   data: { name: 'Profile' },
+      //   template: this.customHeaderTemplate,
+      // }),
       new TableHeaderItem({ data: 'First Name' }),
       new CustomHeaderItem({
         data: { name: 'Last Name' },

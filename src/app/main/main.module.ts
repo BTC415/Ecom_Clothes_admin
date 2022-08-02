@@ -76,6 +76,7 @@ import { StarterApplicationComplexComponent } from './starters/application/start
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AvatarModule } from 'ngx-avatar';
+import { ContactComponent } from './social/contact/contact.component';
 // import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import { AvatarModule } from 'ngx-avatar';
     StarterApplicationBasicComponent,
     StarterApplicationAdvancedComponent,
     StarterApplicationComplexComponent,
+    ContactComponent,
   ],
   imports: [
     CommonModule,

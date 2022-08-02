@@ -31,7 +31,6 @@ import {PricingTableComponent} from "./pricing/pricing-table/pricing-table.compo
 import {MaintenanceComponent} from "./maintenance/maintenance.component"
 import {FaqComponent} from "./application/faq/faq.component"
 import {ManualComponent} from "./application/manual/manual.component"
-import {SupportComponent} from "./application/support/support.component"
 import {ChangelogComponent} from "./application/changelog/changelog.component"
 import {WelcomeComponent} from "./application/welcome/welcome.component"
 import {GettingStartedComponent} from "./application/getting-started/getting-started.component"
@@ -61,6 +60,8 @@ import {StarterApplicationAdvancedComponent} from "./starters/application/starte
 import {StarterApplicationComplexComponent} from "./starters/application/starter-application-complex/starter-application-complex.component"
 import { AuthGuard } from '../services/auth.guard';
 import { ShowProductComponent } from './product/show-product/show-product.component'
+import { ContactComponent } from './social/contact/contact.component'
+import {SupportComponent} from './social/support/support.component'
 const starterPages = [
   {
     path: 'full-width',
@@ -185,6 +186,52 @@ const routeForPages = [
           breadcrumb: 'Add Product'
         },
       },
+    ],
+  },
+  {
+    path: 'support',
+    data: {
+      breadcrumb: 'Support'
+    },
+    children: [
+      {
+        path: 'support-info',
+        component: SupportComponent,
+        data: {
+          breadcrumb: 'Support Info'
+        },
+        canActivate: [AuthGuard],
+      },
+      // {
+      //   path: 'add-product',
+      //   component: DashboardAnalyticsComponent,
+      //   data: {
+      //     breadcrumb: 'Add Product'
+      //   },
+      // },
+    ],
+  },
+  {
+    path: 'contact',
+    data: {
+      breadcrumb: 'Contact'
+    },
+    children: [
+      {
+        path: 'contact-info',
+        component: ContactComponent,
+        data: {
+          breadcrumb: 'Contact Info'
+        },
+        canActivate: [AuthGuard],
+      },
+      // {
+      //   path: 'add-product',
+      //   component: DashboardAnalyticsComponent,
+      //   data: {
+      //     breadcrumb: 'Add Product'
+      //   },
+      // },
     ],
   },
 
